@@ -1,0 +1,159 @@
+\chapter{Methodology}\label{Ch:Methodology}
+
+
+
+\section{Finite Difference Scheme for differential operator}
+In order to solve the Schr\"{o}dinger equation \ref{eq:2.1} in Chapter \ref{Ch:Background}, we apply the finite difference method to approximate the second derivative and convert this problem into a finite-dimensional eigenvalue problem, represented by a matrix. 
+Equation \ref{eq:2.2bloch} in Model 2 involves both a second derivate and a first derivative, hence in this case, we apply the finite difference method to approximate both. 
+
+
+\subsection{}
+In this subsection, We focus on convert the following Schr\"{o}dinger equation into a matrix form under the centered finite difference approximation.  
+\begin{equation} \label{eq:3.1}
+-\frac{d^2\psi}{dx^2}+V(x)\psi=E\psi
+\end{equation}
+
+In a general setting, we solve the 1D Schr\"{o}dinger equation in the interval $[a,b]$, with $b > a$ and we impose the zero boundary condition for wave function, meaning that $\psi(a) = \psi(b) = 0$. 
+We first discretize the continuous interval into a sequence of equally spaced points$\{x_n\}_{n = 0,1,...,N}$,where $x_0 = a$ and $x_N = b$. We denote by h the spacing between the points, i.e. discretization accuracy. Since the Schr\"{o}dinger equation holds at each point. 
+We have the following equations approximating the system: 
+\begin{align*} \label{eq:2}
+ -\frac{d^2\psi(x_1)}{dx^2}+V(x_1)\psi(x_1)&= E\psi(x_1)  \\ 
+-\frac{d^2\psi(x_2)}{dx^2}+V(x_2)\psi(x_2)&= E\psi(x_2) \\
+...\\
+-\frac{d^2\psi(x_{N-2})}{dx^2}+V(x_{N-2})\psi(x_{N-2})&= E\psi(x_2)\\
+-\frac{d^2\psi(x_{N-1})}{dx^2}+V(x_{N-1})\psi(x_{N-1})&= E\psi(x_{N-1})\\
+\end{align*}
+Note that at point $x_0$ and $x_N$, the value of the wave function is already known by the boundary condition. 
+Then, we use the centered finite difference method to approximate all the second derivatives. 
+\begin{equation} \label{eq:3}
+\frac{d^2\psi(x_i)}{dx^2} \approx \frac{\psi(x_{i-1})-2\psi(x_i)+\psi(x_{i+1}))}{2h^2}
+\end{equation}
+Thus by substituting the second derivatives and considering the boundary conditions, the previous equations can be rewritten as the following:
+\begin{align*} \label{eq:2}
+ -\frac{-2\psi(x_1)+\psi(x_{2})}{2h^2}+V(x_1)\psi(x_1)&= E\psi(x_1)  \\ 
+-\frac{\psi(x_{1})-2\psi(x_2)+\psi(x_{3})}{2h^2}+V(x_2)\psi(x_2)&= E\psi(x_{2}) \\
+...\\
+-\frac{\psi(x_{N-3})-2\psi(x_{N-2})+\psi(x_{N-1})}{2h^2}+V(x_{N-2})\psi(x_{N-2})&= E\psi(x_{N-2})\\
+-\frac{\psi(x_{N-2})-2\psi(x_{N-1})}{2h^2}+V(x_{N-1})\psi(x_{N-1})&= E\psi(x_{N-1})\\
+\end{align*}
+
+For convenience, we denote $\psi(x_i)$ as $\psi_i$, $V(x_i)$ as $V_i$. We can then write the preceding equations in the following matrix form: 
+
+\begin{equation} \label{eq:matrix1}
+\left[ \begin{matrix}
+\frac{1}{h^2}+V_1 & -\frac{1}{2h^2} & & 0\\
+-\frac{1}{2h^2} & \ddots & \ddots & \\
+& \ddots & \ddots & -\frac{1}{2h^2} \\
+0 & & -\frac{1}{2h^2} & \frac{1}{h^2}+V_{N-1} \end{matrix} \right]
+\begin{bmatrix}
+    \psi_{1}  \\
+    \psi_{2}  \\
+    \vdots  \\
+    \psi_{N-2}\\
+    \psi_{N-1}
+    \end{bmatrix} = E\begin{bmatrix}
+    \psi_{1}  \\
+    \psi_{2}  \\
+    \vdots  \\
+    \psi_{N-2}\\
+    \psi_{N-1}
+    \end{bmatrix}
+\end{equation}
+
+From the matrix representation of the Schr\"{o}dinger equation, we can easily see that the discretized wave function is a eigenvector of the matrix corresponding to the eigenvalue $E$. Hence, in order to get the wave function and its energy for such a system, we can compute the eigenvalues and eigenvectors for this matrix. 
+
+In order to study localization properties of wave function, we compute the probability density function from the eigenvectors. Notice that the eigenvectors may not be an exact wave function. We need to properly rescale the eigenvector to obtain the wave function and then the probability density function. 
+From the probability density function, we can then compute the variance to measure the degree of localization of a wave function. 
+
+\subsection{}
+In this subsection, we convert the equation \ref{eq:2.2bloch} in Chapter \ref{Ch:Background} to its matrix form using centered finite difference method similar to the preceding subsection. 
+We first expand the bracket in equation \ref{eq:2.2bloch} and we get the following: 
+\begin{equation}\label{eq:expand}
+-\frac{1}{2}\frac{d^2u_k}{dx^2}-i\alpha_k \frac{d u_k}{dx} +\frac{1}{2}{\alpha_k}^2u_k+V(x)u_k = Eu_k
+\end{equation}
+We discretize the interval for this problem into a sequence of equally spaced points $\{x_n\}_{n = 0,1,...,N}$ with discretization accuracy $h$. Because the above equation \ref{eq:expand} holds at all these points, we have the following equations:
+\begin{align*} 
+ -\frac{1}{2}\frac{d^2u_k(x_0)}{dx^2}-i\alpha_k \frac{d u_k(x_0)}{dx} +\frac{1}{2}{\alpha_k}^2u_k(x_0)+V(x_0)u_k(x_0)  &= Eu_k(x_0)  \\
+  -\frac{1}{2}\frac{d^2u_k(x_1)}{dx^2}-i\alpha_k \frac{d u_k(x_1)}{dx} +\frac{1}{2}{\alpha_k}^2u_k(x_1)+V(x_1)u_k(x_1)  &= Eu_k(x_1) \\
+......\\
+ -\frac{1}{2}\frac{d^2u_k(x_N)}{dx^2}-i\alpha_k \frac{d u_k(x_N)}{dx} +\frac{1}{2}{\alpha_k}^2u_k(x_N)+V(x_N)u_k(x_N)  &= Eu_k(x_N) \\
+\end{align*}
+
+Then, we use the centered finite difference method to approximate both the second derivative and first derivative. For convenience, we drop the subscript $k$. 
+
+\begin{align*} 
+\frac{d^2u(x_i)}{dx^2} & \approx \frac{u(x_{i-1})-2u(x_i)+u(x_{i+1}))}{2h^2} \\
+\frac{du(x_i)}{dx} & \approx \frac{u(x_{i+1})-u(x_{i-1})}{2h}
+\end{align*}
+We plug in the above two approximations and apply the periodic boundary condition. After rearranging, we get the following: 
+\begin{equation} \label{eq:dis_periodic}
+(-\frac{1}{2h^2}+\frac{i\alpha}{2h})u_{i-1} + (\frac{1}{h^2}+\frac{1}{2}\alpha^2+V_i)u_i+(-\frac{1}{2h^2}-\frac{i\alpha}{2h})u_{i+1} = Eu_i  
+\end{equation}
+Note that the periodic boundary condition that we impose imply that at $x_0$, $u_{-1}$ would be $u_{N}$. Similarly, at $x_N$, $u_{N+1}$ would be $u_{0}$. 
+Hence, we can convert the system into its matrix form as follows. Note that except the main diagonal and the diagonals above and below it, all other unfilled entries are zeros. 
+\begin{equation} \label{eq:matrix2}
+\left[ \begin{matrix}
+\frac{1}{h^2}+\frac{1}{2}\alpha+V_0 & -\frac{1}{2h^2}-\frac{i\alpha}{2h} & & -\frac{1}{2h^2}+\frac{i\alpha}{2h}\\
+-\frac{1}{2h^2}+\frac{i\alpha}{2h} & \ddots & \ddots & \\
+& \ddots & \ddots & -\frac{1}{2h^2}-\frac{i\alpha}{2h} \\
+-\frac{1}{2h^2}-\frac{i\alpha}{2h} & & -\frac{1}{2h^2}+\frac{i\alpha}{2h} & \frac{1}{h^2}+\frac{1}{2}\alpha+V_{N} \end{matrix} \right]
+\begin{bmatrix}
+    u_{0}  \\
+    u_{1}  \\
+    \vdots  \\
+    u_{N-1}\\
+    u_{N}
+    \end{bmatrix} = E\begin{bmatrix}
+    u_{0}  \\
+    u_{1}  \\
+    \vdots  \\
+    u_{N-1}\\
+    u_{N}
+    \end{bmatrix}
+\end{equation}
+
+
+\section{Matrix form of the harmonic chain model}
+For easy illustration of the matrix in model 3a and model 3b, we analyze the matrix form of the model when all the masses are of unit 1 and the strength of the harmonic string is taken to be 1 as well. So equation \ref{eq:timedependence} becomes
+\begin{equation}\label{eq:model3 regular}
+-w^2u_n = u_{n+1}-2u_n +u_{n-1}, (n = 1,2,...,N). 
+\end{equation}
+By collecting these equations for $n=1,2,...N-1$ and put them into matrix form, we have the following:
+
+\begin{equation} \label{eq: matrix regular}
+\left[ \begin{matrix}
+2 & -1 & & 0\\
+-1 & \ddots & \ddots & \\
+& \ddots & \ddots & -1 \\
+0 & & -1 & 2 \end{matrix} \right]
+\begin{bmatrix}
+     u_{1}  \\
+     u_{2}  \\
+    \vdots  \\
+    u_{N-2}\\
+    u_{N-1}
+    \end{bmatrix} = w^2\begin{bmatrix}
+    u_{1}  \\
+    u_{2}  \\
+    \vdots  \\
+    u_{N-2}\\
+    u_{N-1}
+    \end{bmatrix}
+\end{equation}
+From the above matrix equation, $w^2$ is the eigenvalue of the matrix and $[u_1,u_2,...,u_{N-1}]^T$ is the eigenvector of it. Hence we can solve for the normal modes(i.e. the eigenstate) by simply solving the matrix for the eigenvalues and eigenvectors. 
+
+For model 3a, the only difference is that we no longer have a unit mass for each atom, this can be reflected on the matrix by dividing the corresponding row of the matrix in \ref{eq: matrix regular} by the mass. Given a chain of atoms with different masses, we can create the matrix for this system and solve for the eigenvalues and eigenvectors. 
+For model 3b, all masses are taken to be 1. We can similarly create the matrix for such a system depending on the strength of the harmonic strings. 
+
+\section{Python eigenvalue solver}
+In this project, we implement all the models using the NumPy libraries of python. NumPy is a powerful package for scientific computing that allows us to use N-dimensional array objects and provides us with linear algebra capabilities. In particular, we use the eigenvalue solver function numpy.linalg.eig which returns all the eigenvalues and corresponding eigenvectors for a square matrix. For sparse and Hermitian matrices, we also use the function scipy.sparse.linalg.eigs, which offers us more flexibility to decide how many eigenvalues and in what order we want them to be returned. 
+
+% \section{Control variables}
+% We introduce randomness into our system using the way we mentioned in Model1 and Model 3  and explore the localization of eigenstates of such disordered systems. We generate several different random chain of atoms to see if localization indeed exist. Then we control variables to explore relation between degree of localization and some factors, namely potential height at each atoms sites, atomic spacings. 
+% \subsection{Randomness in atomic spacing}
+% After showing localization property of eigenstates, we want to further understand what factors affect it. 
+
+% \subsection{2}
+% \subsection{3}
+% \subsection{4}
+ \endinput

@@ -1,0 +1,81 @@
+\chapter{Discussion}\label{Ch:Discussion}
+
+
+
+\section{Band Gaps in Kronig Penney Model}
+
+The band gap increases when the potential height increases at a fixed well width as we can see from Figure \ref{fig: band gap against potential }. This matches with our intuition that when the electron is trapped in deeper wells, it leads to a larger band gap. 
+
+However, when fixing the potential, we see that the band gap increases and then decreases as well width increases, resulting in a peak in Figure \ref{fig:band gap against well width fixed potential}. Intuitively, the peak could be understood by considering two extreme cases, namely when the well width very small and when the well width is as wide as possible. In the first case, there is almost no potential, hence no band gap. In the latter case, the whole system has a negative constant potential along the x-axis, so the band gap vanishes. It is more interesting to see that the peak point move towards the left as we increase the potential height, $V_0$. 
+
+
+\section{Localization in random Kronig Penney Model}
+\subsubsection{Factors affecting localization}\label{subsub:Factors affecting localization}
+From the figures in Section \ref{sec: localization}, we see that in both disordered system, one with randomness in atomic spacing and the other with randomness in potential, localization of the probability density function can be observed. Since the probability function is derived by squaring the eigenstate, or in other word, the wave function. We can deduce that the eigenstates are also localized in certain regions. In fact, the figures for probability density function corresponding to higher energy also show the same feature, but we only presented several figures for the lowest energies due to space limit. Hence, we infer that localization of eigenstates is a general property for disorder one dimensional systems subject to certain randomness, more specifically , randomness in atomic spacing and atomic potential.
+
+Here, for convenience, before introducing a measure for degree of localization, we say that the eigenstate has a higher degree of localization if the probability density function is less wider and has a higher peak. So we need to check both the x-coordinate for the localization region and the y coordinate for localization peak. It is interesting to see that the degree of localization is affected by the area of the square potential($V_0l$).Through comparing Figure \ref{fig:Area1_1thlowestRand0.8} - \ref{fig:Area1_1thlowestRand1.5} with Figure \ref{fig:Area10_1thlowestRand0.8} - \ref{fig:Area10_1thlowestRand1.5}, we can see that the probability density function is more localized and has a much higher peak in Figure \ref{fig:Area10_1thlowestRand0.8} - \ref{fig:Area10_1thlowestRand1.5} with $V_0l = 10$ than in Figure \ref{fig:Area1_1thlowestRand0.8} - \ref{fig:Area1_1thlowestRand1.5} with $V_0l = 1.0$. This is more obvious when we compare Figure  \ref{fig:randPoa1_1th_0.5_0.4} with Figure \ref{fig:randPoa10_1th_0.5_0.4}. Hence, we infer that with all other conditions fixed, the larger the area of the square potential, the more localization there is. More accurately, since the well width is fixed in these cases, it is equivalent to say that with all other conditions fixed, the higher the potential height, the more localization there is. 
+
+We can also see that localization is affected by how much the disordered system is perturbed away from the ordered system. For convenience, we call it magnitude of perturbation. When the disordered system is perturbed away from the ordered system more, i.e. when the magnitude of perturbation is larger,  there is more localization in the probability density function. This can be observed by comparing Figure \ref{fig:Area1_1thlowestRand0.9} and \ref{fig:Area1_1thlowestRand1.5}, Figure \ref{fig:randPoa5_1th_0.5_0.4} and Figure \ref{fig:randPoa5_1th_0.5_0.2}, Figure \ref{fig:randPoa5_2th_0.5_0.4} and Figure \ref{fig:randPoa5_2th_0.5_0.2}. 
+
+\subsubsection{Floating point number precision problem}
+Floating point precision, in learning or simulating systems with localization property should be taken into account and payed extra attention to. We call the problem  a precision problem, that means due to lack of consideration about precision, an error or noise is introduced to a system and leads to biased or wrong results. In our case, the precision problem causes each square well potential to shift from the atom site by 0, 1 or 2 grid points, introducing some randomness to the periodic system, so when the well width is small, the randomness becomes significant enough. This can be seen from Figure \ref{fig:oldPo_0.4} and Figure \ref{fig:oldPo_0.3}, where the probability density functions are localized but both are regular system. After fixing the problem, the probability density function become normal as shown in Figure \ref{fig:newPo_0.3} and Figure \ref{fig:newPo_0.4}. But it is noticeable  in Figure \ref{fig:oldPo_0.5} and Figure \ref{fig:newPo_0.5} that there is no localization for the probability density functions before and after taking precision problem into account. This might be that the well width is big enough so that the precision problem does not dominate. 
+\subsubsection{A measure for degree of localization
+}
+Standard deviations computed from the probability density function are used to describe how much an eigenstate is localized. A smaller standard deviation indicate a more localized eigenstate while a larger standard deviation means that the eigenstate is less localized. The figures presented in Chapter \ref{Ch:Results} show different localization properties for eigenstates at different energy levels. 
+Overall, localization properties mentioned in “Factors affecting localization” is well depicted after using standard deviation as a measure. More specifically, the effect of potential height and magnitude of perturbation on degree of localization that has been illustrated in the preceding subsection are better shown in the figures with standard deviation drawn against energy levels. 
+If we disregard the eigenstates for energy levels greater than 30, and comparing disordered system No.1 (See Figure \ref{fig:disordered sys num 1}) with disordered No.2 (See Figure \ref{fig:disordered sys num 2}), disordered system No.3 (See Figure \ref{fig:disordered sys num 3}) with No.4 (See Figure \ref{fig:disordered sys num 4}), we can see that disordered systems that are more perturbed from the ordered system indeed have more localized eigenstates from the fact that the standard deviations for those probability density functions are smaller.  
+If we compare disordered system No.1 (Figure \ref{fig:disordered sys num 1}) with No.3 (Figure \ref{fig:disordered sys num 3}), the latter has smaller standard deviations for its probability density function, indicating that a larger potential height leads to more localizations for eigenstates. Similar comparisons can be made between disorders system No.2(Figure \ref{fig:disordered sys num 2}) and No.4(Figure \ref{fig:disordered sys num 4}), No.5(Figure \ref{fig:disordered sys num 5}) and No.7(Figure \ref{fig:disordered sys num 7}), No.6(Figure \ref{fig:disordered sys num 6}) and No.8(Figure \ref{fig:disordered sys num 8}). However, the pattern is not so obvious for comparison between disordered system No.6 and No.8, an reasonable explanation would be that the eigenstates are already very localized so that further changing the potential height or magnitude of perturbation do not contribute much to its localization. (We will see similar property in the next section on harmonic chain models.)
+Moreover, it can be observed for disordered systems with randomness in atomic spacing that the degree of localization is different for eigenstates at different energy levels. More interestingly, for the eigenstates corresponding to the first 31 energy levels, a peak is observed on the curve in the middle of the first 31 energy levels. This implies that the eigenstates is more localized as the energy level approaches 1 or 31. Though we are not sure why this happens, it would be useful to understand why the these eigenstates have less localization than others because it may reveal some differences between different energy levels. However, such a pattern does not occur in disordered systems with randomness in potential(disordered system No.5 - No.8) as the curve is relatively flat, showing similar amount of localization for the first 31 eigenstates.  
+
+
+
+\section{Localization of normal modes}
+\subsubsection{randomness in mass ratio}
+
+For a harmonic chain of atoms with two different masses, $M_1$ and $M_2$, we explore different factors that affect the localization of normal modes. Several results are summarized as below: 
+We observe that there is more localization for normal modes at high frequency range than at low frequency range. This can be seen from Figure \ref{fig:mass low frequency} and Figure \ref{fig:mass high frequency} in which the 76th normal mode is more localized than the 26th. 
+
+With the same probability distribution for the two masses, we examine a chain of different number of atoms, and the result shows that more localization is observed with a longer chain if we look at a particular frequency. The comparison is made between a chain of 31, 61,101, and 201 atoms(See Figure \ref{fig:mass length31 28th} to Figure \ref{fig:mass length201 198th}).Note that probability density functions are computed from the normal modes for comparison in this case.
+
+Effect of different masses ratios on the degree of localization is also explored, with results showing that given the same arrangement of atoms with mass $M_1$ or $M_2$, the localization increases as the mass ratio $M_2/M_1$ increases. In our result, we look at the 51st normal mode as a representative and we can see that increase in localization is dramatic when the mass ratio changes from $1$ to $10$, but further increase in mass ratio from $10$ to $40$ does not contribute much to localization. The localization stabilizes at certain mass ratio(See Figure \ref{fig:mass ratio 1.1 51st} to Figure \ref{fig:mass ratio 40.0 51st}). This relation is important as it reveals that in order to achieve a certain degree of localization, it is not necessary to require the mass ratio to be too large. Once the mass ratio reaches a threshold value, no significant change in localization will be seen. But we should be careful that this threshold may vary depending on other factors, e.g. length of the chain, frequency of the normal mode, etc. 
+
+Two different probability distributions for masses, namely $\{0.5,0.5\}$ and $\{0.1,0.9\}$ are compared, with $\{0.5,0.5\}$  showing more localization if we fix a frequency of normal mode(See Figure \ref{fig:mass prob 0.1 26th} to Figure \ref{fig:mass prob 0.5 101th}). To some extent, this indicate that a more disordered system displays more localization in normal modes, since around half of the atoms are of different masses with probability distribution $\{0.5, 0.5\}$ while only about one tenth of the atoms are of different mass with $\{0.1, 0.9\}$. The latter is clearly less disordered. 
+
+\subsubsection{randomness in elastic constant}
+
+Similarly, for a harmonic chain of atoms with two different elastic constants, $K_1$ and $K_2$, we also explore different factors that affect the localization of normal modes. The results are similar to that of randomness in masses and are summarized as below. 
+Under a same probability distribution for the elastic constants: 
+\begin{itemize}
+\item 
+More localization is observed at normal modes with higher frequencies. (See Figure \ref{fig:spring normal mode low frequency} to Figure \ref{fig:spring prob density high frequency})
+\item
+Longer chain of atoms tend to have more localization in their normal modes.
+\item
+Given an arrangement of atoms with two elastic constant choices $K_1$, $K_2$, increasing the elastic constant ratio ($K_2/K_1$) increases the localization for the normal mode. However, once the ratio is above a certain threshold value, the localization pattern stabilizes and become no longer sensitive to change in this ratio. 
+\end{itemize}
+
+With two different probability distributions, namely $\{0.5,0.5\}$ and $\{0.1,0.9\}$, there is more localization with  $\{0.5,0.5\}$. Again, this might imply that more disordered system have more localization in their normal modes. 
+
+
+\section{Future work}
+
+Although some interesting results have been obtained from our numerical experiments, some other properties can be further explored in more details with the methodology provided in this paper. Below is a summary of several interesting things that we do not have time to experiment with, but readers are encouraged to explore them.
+\subsubsection{Band gap}
+Non-overlapping potentials of different shapes can be applied to see what band structure it gives. One can also compute the band gap for such potential to see if there is any relation if we modify the potential in a certain way.
+
+Overlapping potentials that take surrounding atoms into account can also be explored to see if the band structure differs from that for non-overlapping potentials. In fact, the result for this case will be more practical because in reality each neighboring atom is interacting with the electron. 
+
+Band structure of a chain of identical super cells in which each cell contains several atoms can be plotted using the same method. Band gap can also be computed for this chain of super cells. Modifying the structure of super cell allows us to see how different atom compositions of a super cell affect the band gap. 
+
+\subsubsection{Localization of eigenstates}
+In this paper, we explore randomness in potential with modification based on only square potential wells. Other potentials can be tried using our method to see if localization is indeed a universal property for random systems. Comparisons can be made to see if the localization differs with different potentials. 
+
+A more detailed and specific experiment can be done in which we only modify atoms at positions we are interested in to see its localization behavior, instead of generating a random sequence of atoms using a probability distribution. In this way, we have fixed the positions so we can then modify several factors, e.g. potential height, atomic spacings, well width to see their effect on localization. 
+
+Our measure for degree of localization captures several important localization properties, but it is still a quite rough estimate. It is a good idea to explore if there is a better measure for degree of localization, which might reveal localization properties more universally. 
+
+\subsubsection{Proof}
+
+We should try to understand the results that we have mentioned in the discussion analytically by providing a rigorous mathematical proof. For example, for band gap, we should not be satisfied with the intuitive explanation for the occurrence of the peak in Figure \ref{fig:band gap against well width fixed potential}. Also, the results show that more localization occurs when the potential well is deeper. We should also come up with a proof for that. 
+
+\endinput

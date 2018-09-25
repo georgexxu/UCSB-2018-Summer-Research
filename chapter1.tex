@@ -1,0 +1,23 @@
+\chapter{Introduction}\label{Ch:Introduction}
+
+Properties of ordered system like regular crystals have been well studied and understood by physicists. A distinct feature about regular crystal is the occurrence of band gap, which is well demonstrated in the Kronig Penney model \cite{kronigPenneyModel}. A detailed numerical study will be carried out in this paper to further explore band gap in Kronig Penney models.We also modify these models to get a one-dimensional disordered systems and study the differences between ordered systems and disordered systems.
+
+
+Both numerical and theoretical results regarding disordered systems had also already been obtained by physicists\cite{summerPaper}. However, in this paper, we mainly focus on the numerical parts that have been studied previously\cite{summerPaper}, but with the advancement of computational abilities and modern algorithms, we explore these properties through a different approach and in more details. 
+
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[scale=1]{Graphics/flowchart.png}
+%\caption{Project Flowchart}
+%\label{fig:flowchart}
+%\end{figure}
+
+\section{Project Goal}
+We explore finite difference method \cite{finiteDifferenceMethod} for solving one-dimensional Schr\"{o}dinger equation with different boundary conditions. We utilize the eigenvalue solver to get the eigenvalues and eigenstates for different one-electron systems, namely regular systems with periodic potential and disordered system with some randomness that we introduce. Not only do we need to obtain the solutions under different systems, but we are also hoping to reveal some relation between different quantities in these systems, and develop some intuition for major differences between ordered and disordered one dimensional systems. Our ultimate goal will be to come up with an analytic reasoning behind these rules that we observed in our numerical experiments so that they can serve as guiding physical principles in certain situations. 
+
+
+
+\section{Organization}
+
+The paper is organized as follows. In Chapter 2, we explain the models and corresponding physical quantities that we are studying in this paper.We also give a brief introduction to mathematical equations governing each model.  In Chapter 3, we describe our finite difference scheme for solving these equations and convert each problem into an eigenvalue problem of finite dimensions. We will also introduce the major programming tools that we used for solving these eigenvalue problems. In Chapter 4, we present our results for each model from our numerical experiments. Findings, some conclusions, and possible future exploration directions will be discussed in Chapter 5. Our core working codes are too lengthy to be included in this paper but can be requested through email.  
+\endinput
